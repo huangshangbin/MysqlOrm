@@ -19,4 +19,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mysql\DbBase.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\DbEntity.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\MysqlDb.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
