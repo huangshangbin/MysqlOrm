@@ -2,18 +2,17 @@
 class User : public DbEntity
 {
 public:
-	User()
-	{
-		bindTableName("user");
-		
-		bindFeild("name", &m_name);
-		bindFeild("age", &m_age);
-	}
-
-public:
 	string m_name;
 	int m_age;
 
+public:
+	void bindMember()
+	{
+		bindTableName("user");
+
+		bindFeild("name", &m_name);
+		bindFeild("age", &m_age);
+	}
 };
 
 获取数据对象：

@@ -93,6 +93,7 @@ public:
 		{
 			T object;
 			DbEntity* objectEntity = (DbEntity*)&object;
+			objectEntity->bindMember();
 
 			for (auto& it : objectEntity->m_feildNameIntMap)
 			{
@@ -121,6 +122,7 @@ public:
 		keepConnection();
 
 		DbEntity* dbEntity = &object;
+		dbEntity->bindMember();
 
 		string keyStr = "(";
 		string valueStr = " values(";

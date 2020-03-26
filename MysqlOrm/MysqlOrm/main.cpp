@@ -9,6 +9,10 @@ using namespace std;
 class User : public DbEntity
 {
 public:
+	string m_name;
+	int m_age;
+
+public:
 	void bindMember()
 	{
 		bindTableName("user");
@@ -16,47 +20,10 @@ public:
 		bindFeild("name", &m_name);
 		bindFeild("age", &m_age);
 	}
-
-public:
-	string m_name;
-	int m_age;
-
 };
 
 class Info : public DbEntity
 {
-public:
-	Info() {  bindMember(); }
-	Info(const Info& info)
-	{
-		bindMember();
-		*this = info;
-	}
-	Info(Info&& info)
-	{
-		bindMember();
-		*this = info;
-	}
-
-	void operator = (const Info& info)
-	{
-		m_id = info.m_id;
-		m_time = info.m_time;
-		m_age = info.m_age;
-		m_grade = info.m_grade;
-		m_math = info.m_math;
-		m_remarks = info.m_remarks;
-	}
-	void operator =(Info&& info)
-	{
-		m_id = info.m_id;
-		m_time = info.m_time;
-		m_age = info.m_age;
-		m_grade = info.m_grade;
-		m_math = info.m_math;
-		m_remarks = info.m_remarks;
-	}
-
 public:
 	string m_id;
 	string m_time;
@@ -65,7 +32,7 @@ public:
 	double m_math;
 	string m_remarks;
 
-private:
+public:
 	void bindMember()
 	{
 		bindTableName("info");
@@ -94,20 +61,14 @@ int main()
 	MysqlDb testDb(dbInfo);
 	testDb.link();
 
-	Info newInfo;
-	newInfo.m_id = "11002";
-	newInfo.m_time = "2020-3-26";
-	newInfo.m_age = 10;
-	newInfo.m_grade = 130.32;
-	newInfo.m_math = 70.3;
-	newInfo.m_remarks = "test";
-
-	Info copyInfo;
-	copyInfo = newInfo;
-	cout << newInfo.m_feildNameStringMap["id"] << endl;
-	cout << copyInfo.m_feildNameStringMap["id"] << endl;
-
-	testDb.insertObject(copyInfo);
+	Info info;
+	info.m_id = "11003";
+	info.m_time = "2020-3-26";
+	info.m_age = 20;
+	info.m_grade = 120.1;
+	info.m_math = 34.2;
+	info.m_remarks = "new design";
+	testDb.insertObject(info);
 
 	int a;
 	cin >> a;

@@ -26,5 +26,7 @@ protected:
 	void bindFeild(string feildName, double* member) { m_feildNameDoubleMap[feildName] = member; }
 	void bindFeild(string feildName, string* member) { m_feildNameStringMap[feildName] = member; }
 
+public:
+	virtual void bindMember() = 0;
 };
 
