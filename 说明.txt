@@ -1,43 +1,16 @@
-class DbEntity
-{
-public:
-	string m_tableName;
+使用说明：
+     1 如果调用函数失败，可以打印sql语句，复制到mysql工具，执行语句看报错信息。多数原因为绑定列名写错了。
 
-	map<string, int*> m_feildNameIntMap;
+     2 只需要把mysql文件夹包含在项目里就可以使用了， 同时配置好mysql的依赖库。
 
-	void bindTableName(string tableName)
-	{
-		m_tableName = tableName;
-	}
-
-	void bindFeild(string feildName, int* member)
-	{
-		m_feildNameIntMap[feildName] = member;
-	}
-
-	void bindFeild(string feildName, string* member)
-	{
-		//m_feildNameIntMap[feildName] = member;
-	}
-};
-
-class Test : public DbEntity
-{
-public:
-	int m_id;
-
-public:
-	Test() { bindIntFeild("id", &m_id); }
-	
-};
+     3 要支持 拷贝构造 和 移动构造 参考 完整实体类定义.txt
 
 
-说明：
-    1 参考上面的方式实现Mysql的数据库操作类。 实现节点和属性绑定
-	 
-	2   数据量太大需要测试效率问题，内存使用过多。
+设计说明：
+    1 每一个实体都有额外的数据开销保存实体信息。getObjectList()函数，可能会因为数据量太大效率不高。
 
+    2 有一个 DbType 枚举， 并且数据库信息保存在链接对象。目的是为以后的数据库扩展做准备。
 
-     3  先写在 MysqlOrm 项目用来试验。  后期还是写到win32控制台类库比较合适。  我的工具项目 添加 github类库 子对话框，
-        参考文件夹替换工具。左边写window32控制台类库，配置github源， 右边具体的项目。 配置模块，写入配置文件。确定更新
-        之后，切换工作目录，删除类库，下载类库，删除不需要的模块。
+    3 由于实体信息写在基类，每一个构造函数都需要声明属性绑定。 并且拷贝构造和移动构造都只会调用基类基础构造函数，所以不用
+       担心基类数据成员覆盖问题。
+     

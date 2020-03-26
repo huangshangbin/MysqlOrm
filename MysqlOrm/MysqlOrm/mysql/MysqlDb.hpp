@@ -17,6 +17,13 @@ public:
 	~MysqlDb() { close(); }
 
 private:
+	MysqlDb(const MysqlDb& db) {}
+	void operator = (const MysqlDb& db) {}
+
+	MysqlDb(MysqlDb&& db) {}
+	void operator = (MysqlDb&& db) {}
+
+private:
 	MYSQL m_mysql;
 
 //父类虚函数
@@ -58,6 +65,7 @@ public:
 		mysql_close(&m_mysql);
 	}
 
+//增删改查
 public:
 	template<class T>
 	void getObjectList(deque<T>& objectList, string sql)
@@ -105,6 +113,43 @@ public:
 		}
 
 		mysql_free_result(res);
+	}
+
+	template<class T>
+	bool insertObject(T& object)
+	{
+		keepConnection();
+
+		DbEntity* dbEntity = &object;
+
+		string keyStr = "(";
+		string valueStr = " values(";
+		for (auto& it : dbEntity->m_feildNameIntMap)
+		{
+			keyStr = keyStr + it.first + ",";
+			valueStr = valueStr + std::to_string(*it.second) + ",";
+		}
+
+		for (auto& it : dbEntity->m_feildNameDoubleMap)
+		{
+			keyStr = keyStr + it.first + ",";
+			valueStr = valueStr + std::to_string(*it.second) + ",";
+		}
+
+		for (auto& it : dbEntity->m_feildNameStringMap)
+		{
+			keyStr = keyStr + it.first + ",";
+			valueStr = valueStr + "'" + *it.second + "'" + ",";
+		}
+
+		keyStr = keyStr.substr(0, keyStr.length() - 1) + ")";
+		valueStr = valueStr.substr(0, valueStr.length() - 1) + ");";
+
+		string sql = "insert into " + dbEntity->m_tableName + keyStr + valueStr;
+		
+		//cout << sql << endl;
+
+		return executeSql(sql);
 	}
 
 private:

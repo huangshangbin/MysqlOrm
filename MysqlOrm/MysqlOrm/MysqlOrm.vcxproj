@@ -74,6 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>E:\Lib\mysql\include;E:\project\c++\github\myProject\MysqlOrm\MysqlOrm\MysqlOrm\mysql;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Lib\mysql\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

@@ -9,9 +9,8 @@ using namespace std;
 class DbEntity
 {
 public:
-	DbEntity() {}
-	DbEntity(const DbEntity& entity) { *this = entity; }
-	void operator = (const DbEntity& entity) {}
+	DbEntity() { }
+
 
 public:
     string m_tableName;
@@ -26,5 +25,6 @@ protected:
 	void bindFeild(string feildName, int* member) { m_feildNameIntMap[feildName] = member; }
 	void bindFeild(string feildName, double* member) { m_feildNameDoubleMap[feildName] = member; }
 	void bindFeild(string feildName, string* member) { m_feildNameStringMap[feildName] = member; }
+
 };
 

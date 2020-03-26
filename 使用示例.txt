@@ -1,0 +1,65 @@
+//数据实体定义规范
+class User : public DbEntity
+{
+public:
+	User()
+	{
+		bindTableName("user");
+		
+		bindFeild("name", &m_name);
+		bindFeild("age", &m_age);
+	}
+
+public:
+	string m_name;
+	int m_age;
+
+};
+
+获取数据对象：
+   	DbInfo dbInfo;
+	dbInfo.m_dbType = DbType::MYSQL_DB;
+	dbInfo.m_host = "127.0.0.1";
+	dbInfo.m_port = 3306;
+	dbInfo.m_userName = "root";
+	dbInfo.m_password = "123456";
+	dbInfo.m_dbName = "test";
+
+	MysqlDb testDb(dbInfo);
+	testDb.link();
+
+	deque<User> userList;
+	testDb.getObjectList(userList, "select * from user");
+
+	for (User& user : userList)
+	{
+		cout << user.m_name << " " << user.m_age << endl;
+	}
+
+
+插入数据对象
+	DbInfo dbInfo;
+	dbInfo.m_dbType = DbType::MYSQL_DB;
+	dbInfo.m_host = "127.0.0.1";
+	dbInfo.m_port = 3306;
+	dbInfo.m_userName = "root";
+	dbInfo.m_password = "123456";
+	dbInfo.m_dbName = "test";
+
+	MysqlDb testDb(dbInfo);
+	testDb.link();
+
+	User newUser;
+	newUser.m_name = "test";
+	newUser.m_age = 10;
+	testDb.insertObject(newUser);
+
+
+
+
+
+
+
+
+
+
