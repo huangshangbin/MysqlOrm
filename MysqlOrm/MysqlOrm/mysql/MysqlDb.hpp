@@ -60,6 +60,18 @@ public:
 		return true;
 	}
 
+	MYSQL* getHandle()
+	{
+		keepConnection();
+
+		return &m_mysql;
+	}
+
+	void keepConnection()
+	{
+		mysql_ping(&m_mysql);
+	}
+
 	void close()
 	{
 		mysql_close(&m_mysql);
@@ -154,11 +166,7 @@ public:
 		return executeSql(sql);
 	}
 
-private:
-	void keepConnection()
-	{
-		mysql_ping(&m_mysql);
-	}
+	
 };
 
  

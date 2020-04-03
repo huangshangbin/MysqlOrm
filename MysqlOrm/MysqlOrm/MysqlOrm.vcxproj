@@ -151,11 +151,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mysql\pool\MysqlDbPool.cpp" />
+    <ClCompile Include="mysql\pool\SmartMysqlDbPtr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mysql\pool\MysqlDbPool.h" />
     <ClInclude Include="mysql\DbBase.hpp" />
     <ClInclude Include="mysql\DbEntity.hpp" />
     <ClInclude Include="mysql\MysqlDb.hpp" />
+    <ClInclude Include="mysql\pool\SmartMysqlDbPtr.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

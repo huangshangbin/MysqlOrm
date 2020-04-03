@@ -17,7 +17,6 @@ public:
 
 获取数据对象：
    	DbInfo dbInfo;
-	dbInfo.m_dbType = DbType::MYSQL_DB;
 	dbInfo.m_host = "127.0.0.1";
 	dbInfo.m_port = 3306;
 	dbInfo.m_userName = "root";
@@ -38,7 +37,6 @@ public:
 
 插入数据对象
 	DbInfo dbInfo;
-	dbInfo.m_dbType = DbType::MYSQL_DB;
 	dbInfo.m_host = "127.0.0.1";
 	dbInfo.m_port = 3306;
 	dbInfo.m_userName = "root";

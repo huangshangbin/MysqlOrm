@@ -18,6 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="mysql\pool\MysqlDbPool.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mysql\pool\SmartMysqlDbPtr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mysql\DbBase.hpp">
@@ -27,6 +33,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="mysql\MysqlDb.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\pool\MysqlDbPool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mysql\pool\SmartMysqlDbPtr.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

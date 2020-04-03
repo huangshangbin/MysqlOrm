@@ -5,26 +5,9 @@
 
 using namespace std;
 
-enum DbType
-{
-	MYSQL_DB,
-	SQLite_DB,
-	UNDEFINE_DB
-};
 
 class DbInfo
 {
-public:
-	DbInfo() { m_dbType = UNDEFINE_DB; }
-
-public:
-	DbType m_dbType;
-
-//文件数据库
-public:
-	string m_dbFilePath;
-
-//关系型数据库
 public:
 	string m_host;
 	int m_port;
