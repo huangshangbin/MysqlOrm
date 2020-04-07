@@ -44,7 +44,7 @@ void dbPoolTestFun(int threadId)
 
 
 
-DbInfo dbInfo;
+                DbInfo dbInfo;
 	dbInfo.m_host = "127.0.0.1";
 	dbInfo.m_port = 3306;
 	dbInfo.m_userName = "root";

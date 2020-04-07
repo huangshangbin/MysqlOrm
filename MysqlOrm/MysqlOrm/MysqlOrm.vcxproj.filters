@@ -41,5 +41,11 @@
     <ClInclude Include="mysql\pool\SmartMysqlDbPtr.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="mysql\SqlString.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="mysql\SqlString.txt" />
   </ItemGroup>
 </Project>

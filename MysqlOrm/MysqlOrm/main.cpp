@@ -5,6 +5,7 @@ using namespace std;
 #include "mysql.h"
 
 #include "MysqlDb.hpp"
+#include "SqlString.hpp"
 
 class User : public DbEntity
 {
@@ -50,62 +51,12 @@ public:
 #include <pool/MysqlDbPool.h>
 
 
-
-MysqlDbPool* mysqlDbPool;
-
-void dbPoolTestFun(int threadId)
-{
-	int count = 0;
-	while (count < 100)
-	{
-		//MysqlDb* mysqlDb = mysqlDbPool->waitGetConnection();
-		SmartMysqlDbPtr mysqlDb = mysqlDbPool->waitGetSmartCon();
-
-		cout << "线程" << threadId << " 获得使用权" << endl;
-
-		User user;
-		user.m_name = std::to_string(threadId * count);
-		mysqlDb->insertObject(user);
-
-		Sleep(10);
-
-		//mysqlDbPool->releaseConnection(mysqlDb);
-
-
-		count++;
-	}
-}
-
-
 int main()
 {
-	DbInfo dbInfo;
-	dbInfo.m_host = "127.0.0.1";
-	dbInfo.m_port = 3306;
-	dbInfo.m_userName = "root";
-	dbInfo.m_password = "123456";
-	dbInfo.m_dbName = "test";
-
-	mysqlDbPool = new MysqlDbPool(5, dbInfo);
-
-	thread testThread1(dbPoolTestFun, 1);
-	thread testThread2(dbPoolTestFun, 2);
-	thread testThread3(dbPoolTestFun, 3);
-	thread testThread4(dbPoolTestFun, 4);
-	thread testThread5(dbPoolTestFun, 5);
-	thread testThread6(dbPoolTestFun, 6);
-	thread testThread7(dbPoolTestFun, 7);
-
-	testThread1.join();
-	testThread2.join();
-	testThread3.join();
-	testThread4.join();
-	testThread5.join();
-	testThread6.join();
-	testThread7.join();
-
-
-	delete mysqlDbPool;
+	SqlString sql("select * from user where id between ? and ?");
+	sql.orderlyReplace("002");
+	sql.orderlyReplace("004");
+	cout << sql.toString() << endl;
 
 	int a;
 	cin >> a;

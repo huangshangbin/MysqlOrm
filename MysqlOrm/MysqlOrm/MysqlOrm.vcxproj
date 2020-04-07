@@ -160,6 +160,10 @@
     <ClInclude Include="mysql\DbEntity.hpp" />
     <ClInclude Include="mysql\MysqlDb.hpp" />
     <ClInclude Include="mysql\pool\SmartMysqlDbPtr.h" />
+    <ClInclude Include="mysql\SqlString.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="mysql\SqlString.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

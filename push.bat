@@ -6,7 +6,7 @@
 
 ::上传到git
 git add .
-git commit -m "add MysqlDbPool SmartMysqlDbPtr"
+git commit -m "add SqlString.hpp"
 git push origin master
 echo "push complete"
 pause

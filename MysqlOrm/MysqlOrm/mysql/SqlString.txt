@@ -1,0 +1,7 @@
+#include "SqlString.hpp"
+
+สนำร:
+SqlString sql("select * from user where id between ? and ?");
+	sql.orderlyReplace("002");
+	sql.orderlyReplace("004");
+	cout << sql.toString() << endl;

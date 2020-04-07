@@ -50,10 +50,6 @@ MysqlDb* MysqlDbPool::waitGetConnection()
 	MysqlDb* mysqlDb = m_mysqlDbQueue.front();
 	m_mysqlDbQueue.pop();
 
-// 	SmartMysqlDbPtr smartMysqlDb(mysqlDb, this);
-// 
-// 	return std::move(smartMysqlDb);
-
 	return mysqlDb;
 }
 
