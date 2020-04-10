@@ -51,6 +51,11 @@ public:
 	newUser.m_age = 10;
 	testDb.insertObject(newUser);
 
+说明：
+     1 复杂sql的查询使用 getHandle() 拿到实例，手动遍历数据。（后期会添加一个结果集的类。） 小心多线程陷阱。
+
+     2  有一个 SqlString 类可以帮助写sql语句。
+
 
 
 

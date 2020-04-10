@@ -6,7 +6,7 @@
 
 ::上传到git
 git add .
-git commit -m "add SqlString.hpp"
+git commit -m "add todo.txt"
 git push origin master
 echo "push complete"
 pause

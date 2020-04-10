@@ -1,0 +1,8 @@
+加强：
+     1  添加 DbResultMap 类   string id = dbResultMap["id].toString();   int age = dbResultMap["id].toInt(); 
+           MysqlDb 接口形式    unique_ptr<DbResultMap> getResultMap(string sql);（我对移动构造效率持怀疑态度）
+
+           DbResultMap  接口形式   void setCursor(int pos);  //设置读取行位置
+                                                  bool next();            //切换到下一个位置,下一个位置到达size 返回false
+                                                  int size();   //总行数
+                        
