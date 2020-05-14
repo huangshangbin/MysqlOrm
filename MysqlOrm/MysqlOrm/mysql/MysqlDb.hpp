@@ -3,6 +3,7 @@
 #include "DbBase.hpp"
 
 #include "DbEntity.hpp"
+#include "SqlString.hpp"
 
 #include <deque>
 
