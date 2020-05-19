@@ -1,0 +1,31 @@
+#include <mysql/MysqlDb.hpp>
+
+                DbInfo dbInfo;
+	dbInfo.m_host = "127.0.0.1";
+	dbInfo.m_port = 3306;
+	dbInfo.m_userName = "root";
+	dbInfo.m_password = "123456";
+	dbInfo.m_dbName = "test";
+
+	MysqlDb testDb(dbInfo);
+	testDb.link();
+
+               deque<string> sqlList;
+	sqlList.push_back("insert into info values('11008', '2020-3-26', 10, 100, 70, 'no');");
+	sqlList.push_back("insert into info values('11009', '2020-3-26', 10, 100, 70, no);");
+	testDb.executeTransaction(sqlList);
+
+	cout << testDb.getError() << endl;
+
+说明：
+     1  executeTransaction某一条语句出错就会回滚，应用不用考虑相关问题。只需提供语句列表即可。
+
+
+
+
+
+
+
+
+
+

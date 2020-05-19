@@ -6,7 +6,7 @@
 
 ::上传到git
 git add .
-git commit -m "DbEntity add  keywordWrapper"
+git commit -m "MysqlDb add  executeTransaction"
 git push origin master
 echo "push complete"
 pause

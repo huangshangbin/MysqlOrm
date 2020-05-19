@@ -27,6 +27,8 @@ private:
 private:
 	MYSQL m_mysql;
 
+	string m_error;
+
 //父类虚函数
 public:
 	bool link()
@@ -40,11 +42,12 @@ public:
 			m_dbInfo.m_dbName.c_str(), m_dbInfo.m_port, NULL, 0))
 		{
 			mysql_query(&m_mysql, "set names gbk");
-
+			m_error = "";
 			return true;
 		}
 		else
 		{
+			m_error = mysql_error(&m_mysql);
 			return false;
 		}
 	}
@@ -55,10 +58,43 @@ public:
 
 		if (mysql_query(&m_mysql, sql.c_str()))
 		{
+			m_error = mysql_error(&m_mysql);
 			return false;
 		}
 
+		m_error = "";
 		return true;
+	}
+
+	bool executeTransaction(deque<string>& sqlList)
+	{
+		keepConnection();
+
+		mysql_autocommit(&m_mysql, 0);//自动提交关闭
+
+		bool isSuccess = true;
+		for (int i = 0; i < sqlList.size(); i++)
+		{
+			if (mysql_query(&m_mysql, sqlList[i].c_str()))
+			{
+				isSuccess = false;
+
+				m_error = mysql_error(&m_mysql);
+
+				mysql_rollback(&m_mysql);
+
+				break;
+			}
+		}
+
+		if (isSuccess)
+		{
+			m_error = "";
+			mysql_commit(&m_mysql);
+		}
+		
+		mysql_autocommit(&m_mysql, 1);//自动提交打开
+		return isSuccess;
 	}
 
 	MYSQL* getHandle()
@@ -71,6 +107,11 @@ public:
 	void keepConnection()
 	{
 		mysql_ping(&m_mysql);
+	}
+
+	string getError()
+	{
+		return m_error;
 	}
 
 	void close()
@@ -88,6 +129,7 @@ public:
 		keepConnection();
 		if (mysql_query(&m_mysql, sql.c_str()))
 		{
+			m_error = mysql_error(&m_mysql);
 			return;
 		}
 
@@ -126,6 +168,7 @@ public:
 			objectList.push_back(object);
 		}
 
+		m_error = "";
 		mysql_free_result(res);
 	}
 

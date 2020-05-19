@@ -4,8 +4,8 @@
 #include <queue>
 #include <mutex>
 
-#include <MysqlDb.hpp>
-#include <pool/SmartMysqlDbPtr.h>
+#include <mysql/MysqlDb.hpp>
+#include <mysql/pool/SmartMysqlDbPtr.h>
 
 using namespace std;
 

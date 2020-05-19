@@ -1,6 +1,6 @@
 #pragma once
 
-#include <pool/MysqlDbPool.h>
+#include <mysql/pool/MysqlDbPool.h>
 
 class MysqlDbPool;
 
