@@ -6,7 +6,7 @@
 
 ::上传到git
 git add .
-git commit -m "MysqlDb add  executeTransaction"
+git commit -m "SmartMysqlDbPtr set move = is private"
 git push origin master
 echo "push complete"
 pause
