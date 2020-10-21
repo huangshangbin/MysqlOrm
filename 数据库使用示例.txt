@@ -51,6 +51,13 @@ public:
 	newUser.m_age = 10;
 	testDb.insertObject(newUser);
 
+SqlString的使用：
+
+	SqlString sql("select * from user where id between ? and ?");
+	sql.orderlyReplace("002");
+	sql.orderlyReplace("004");
+	cout << sql.toString() << endl;
+
 说明：
      1 复杂sql的查询使用 getHandle() 拿到实例，手动遍历数据。（后期会添加一个结果集的类。） 小心多线程陷阱。
 
