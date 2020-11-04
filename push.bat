@@ -6,7 +6,7 @@
 
 ::上传到git
 git add .
-git commit -m "modify 数据库池使用示例.txt"
+git commit -m "add insertObjectList"
 git push origin master
 echo "push complete"
 pause

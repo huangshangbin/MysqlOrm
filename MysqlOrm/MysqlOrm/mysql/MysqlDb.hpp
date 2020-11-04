@@ -210,7 +210,77 @@ public:
 		return executeSql(sql);
 	}
 
-	
+	template<class T>
+	bool insertObjectList(deque<T>& objectList)
+	{
+		keepConnection();
+
+		string tableName;
+
+		DbEntity* dbEntity = &objectList[0];
+		dbEntity->bindMember();
+
+		tableName = dbEntity->m_tableName;
+
+		string keyStr = "(";
+		for (auto& it : dbEntity->m_feildNameIntMap)
+		{
+			keyStr = keyStr + it.first + ",";
+		}
+
+		for (auto& it : dbEntity->m_feildNameDoubleMap)
+		{
+			keyStr = keyStr + it.first + ",";
+		}
+
+		for (auto& it : dbEntity->m_feildNameStringMap)
+		{
+			keyStr = keyStr + it.first + ",";
+		}
+
+		keyStr = keyStr.substr(0, keyStr.length() - 1) + ")";
+
+		string valueStrList = " values ";
+		for (int i = 0; i < objectList.size(); i++)
+		{
+			string valueStr = "(";
+			T object = objectList[i];
+			dbEntity = &object;
+			dbEntity->bindMember();
+
+			for (auto& it : dbEntity->m_feildNameIntMap)
+			{
+				valueStr = valueStr + std::to_string(*it.second) + ",";
+			}
+
+			for (auto& it : dbEntity->m_feildNameDoubleMap)
+			{
+				valueStr = valueStr + std::to_string(*it.second) + ",";
+			}
+
+			for (auto& it : dbEntity->m_feildNameStringMap)
+			{
+				valueStr = valueStr + "'" + *it.second + "'" + ",";
+			}
+			valueStr = valueStr.substr(0, valueStr.length() - 1) + ")";
+
+			if (i == (objectList.size() - 1))
+			{
+				valueStrList = valueStrList + valueStr;
+			}
+			else
+			{
+				valueStrList = valueStrList + valueStr + ",";
+			}
+		}
+
+
+		string sql = "insert into " + tableName + keyStr + valueStrList;
+
+		//cout << sql << endl;
+
+		return executeSql(sql);
+	}
 };
 
  
