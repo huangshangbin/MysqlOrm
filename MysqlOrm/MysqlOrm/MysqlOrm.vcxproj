@@ -155,6 +155,11 @@
     <ClCompile Include="mysql\pool\SmartMysqlDbPtr.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="example\entity\Info.hpp" />
+    <ClInclude Include="example\entity\User.hpp" />
+    <ClInclude Include="example\helper\SpaceTime.hpp" />
+    <ClInclude Include="example\MultiThreadMysqlDbExample.hpp" />
+    <ClInclude Include="example\MysqlDbExample.hpp" />
     <ClInclude Include="mysql\pool\MysqlDbPool.h" />
     <ClInclude Include="mysql\DbBase.hpp" />
     <ClInclude Include="mysql\DbEntity.hpp" />

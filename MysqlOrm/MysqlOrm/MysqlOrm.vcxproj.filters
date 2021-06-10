@@ -44,6 +44,21 @@
     <ClInclude Include="mysql\SqlString.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="example\entity\User.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="example\entity\Info.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="example\MysqlDbExample.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="example\MultiThreadMysqlDbExample.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="example\helper\SpaceTime.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="mysql\SqlString.txt" />
